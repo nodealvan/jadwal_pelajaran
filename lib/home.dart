@@ -356,7 +356,7 @@ class ScheduleScreen extends StatelessWidget {
                             ),
                             IconButton(
                               icon: const Icon(Icons.remove_circle,
-                                  color: Colors.red),
+                                  color: Colors.white),
                               onPressed: () {
                                 setState(() {
                                   subjectControllers.removeAt(index);
@@ -611,15 +611,15 @@ void _showEditDialog(BuildContext context, int index, Schedule schedule) {
                             ),
                           ),
                           IconButton(
-                            icon: const Icon(Icons.remove_circle,
-                                color: Colors.red),
-                            onPressed: () {
-                              setState(() {
-                                subjectControllers.removeAt(index);
-                                timeControllers.removeAt(index);
-                              });
-                            },
-                          ),
+                              icon: const Icon(Icons.remove_circle,
+                                  color: Colors.white),
+                              onPressed: () {
+                                setState(() {
+                                  subjectControllers.removeAt(index);
+                                  timeControllers.removeAt(index);
+                                });
+                              },
+                            ),
                         ],
                       );
                     }),

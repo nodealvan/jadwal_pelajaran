@@ -93,7 +93,7 @@ class _HeaderDateTimelineState extends State<HeaderDateTimeline> {
                         ),
                         Text(
                           DateFormat('d', 'id_ID').format(date),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -101,7 +101,7 @@ class _HeaderDateTimelineState extends State<HeaderDateTimeline> {
                         ),
                         Text(
                           DateFormat('MMMM', 'id_ID').format(date),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black26,
                             fontWeight: FontWeight.bold,
                           ),
