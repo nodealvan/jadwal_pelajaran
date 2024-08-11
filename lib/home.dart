@@ -152,17 +152,25 @@ class ScheduleScreen extends StatelessWidget {
                         width: 130,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: const Color.fromARGB(255, 149, 141, 65)),
-                        child: const Row(
+                            color: Colors.grey),
+                        child:  Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
                               'Buat jadwal',
                               style: TextStyle(color: Colors.white),
                             ),
-                            Icon(
-                              Icons.add,
-                              color: Colors.white,
+                            Container(
+                              height: 35,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)
+                              ),
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.cyan,
+                              ),
                             ),
                           ],
                         ))),
@@ -200,6 +208,7 @@ class ScheduleScreen extends StatelessWidget {
     final timeControllers = <TextEditingController>[];
 
     showDialog(
+      
       context: context,
       builder: (context) {
         return Dialog(
@@ -358,27 +367,30 @@ class ScheduleScreen extends StatelessWidget {
                           ],
                         );
                       }),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            subjectControllers.add(TextEditingController());
-                            timeControllers.add(TextEditingController());
-                          });
-                        },
-                        child: Container(
-                            height: 50,
-                            width: 300,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Colors.black,
-                                    offset: Offset.infinite,
-                                    spreadRadius: 0.7,
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(10)),
-                            child: const Center(child: Icon(Icons.add))),
+                      Padding(
+                        padding: const EdgeInsets.all(14.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              subjectControllers.add(TextEditingController());
+                              timeControllers.add(TextEditingController());
+                            });
+                          },
+                          child: Container(
+                              height: 50,
+                              width: 300,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Colors.black,
+                                      offset: Offset.infinite,
+                                      spreadRadius: 0.7,
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: const Center(child: Icon(Icons.add))),
+                        ),
                       ),
                       const SizedBox(height: 16.0),
                       Row(
@@ -611,27 +623,30 @@ void _showEditDialog(BuildContext context, int index, Schedule schedule) {
                         ],
                       );
                     }),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          subjectControllers.add(TextEditingController());
-                          timeControllers.add(TextEditingController());
-                        });
-                      },
-                      child: Container(
-                          height: 50,
-                          width: 300,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.black,
-                                  offset: Offset.infinite,
-                                  spreadRadius: 0.7,
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(10)),
-                          child: const Center(child: Icon(Icons.add))),
+                    Padding(
+                      padding: const EdgeInsets.all(14.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            subjectControllers.add(TextEditingController());
+                            timeControllers.add(TextEditingController());
+                          });
+                        },
+                        child: Container(
+                            height: 50,
+                            width: 300,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black,
+                                    offset: Offset.infinite,
+                                    spreadRadius: 0.7,
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(10)),
+                            child: const Center(child: Icon(Icons.add))),
+                      ),
                     ),
                     const SizedBox(height: 16.0),
                     Row(

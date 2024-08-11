@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class HeaderDateTimeline extends StatefulWidget {
   final DateTime selectedDate;
@@ -24,19 +26,27 @@ class _HeaderDateTimelineState extends State<HeaderDateTimeline> {
   void initState() {
     super.initState();
     initializeDateFormatting('id_ID', null);
-    currentDate = DateTime.now();
+    tz.initializeTimeZones();
+    _setCurrentDate();
     _scheduleMidnightUpdate();
   }
 
+  void _setCurrentDate() {
+    final jakartaTimeZone = tz.getLocation('Asia/Jakarta');
+    final jakartaNow = tz.TZDateTime.now(jakartaTimeZone);
+    setState(() {
+      currentDate = jakartaNow.toLocal();
+    });
+  }
+
   void _scheduleMidnightUpdate() {
-    DateTime now = DateTime.now();
-    DateTime midnight = DateTime(now.year, now.month, now.day + 1);
-    Duration timeUntilMidnight = midnight.difference(now);
+    final jakartaTimeZone = tz.getLocation('Asia/Jakarta');
+    final jakartaNow = tz.TZDateTime.now(jakartaTimeZone);
+    final midnight = tz.TZDateTime(jakartaTimeZone, jakartaNow.year, jakartaNow.month, jakartaNow.day + 1);
+    final timeUntilMidnight = midnight.difference(jakartaNow);
 
     Timer(timeUntilMidnight, () {
-      setState(() {
-        currentDate = DateTime.now();
-      });
+      _setCurrentDate();
       _scheduleMidnightUpdate(); // Jadwalkan lagi untuk malam berikutnya
     });
   }
@@ -60,9 +70,6 @@ class _HeaderDateTimelineState extends State<HeaderDateTimeline> {
             child: Row(
               children: List.generate(7, (index) {
                 DateTime date = startDate.add(Duration(days: index));
-                bool isSelected = date.day == widget.selectedDate.day &&
-                    date.month == widget.selectedDate.month &&
-                    date.year == widget.selectedDate.year;
                 bool isToday = date.day == currentDate.day &&
                     date.month == currentDate.month &&
                     date.year == currentDate.year;
@@ -80,18 +87,14 @@ class _HeaderDateTimelineState extends State<HeaderDateTimeline> {
                         Text(
                           DateFormat('EEEE', 'id_ID').format(date),
                           style: TextStyle(
-                            color: isSelected
-                                ? Colors.blue
-                                : (isToday ? Colors.white : Colors.black54),
+                            color: isToday ? Colors.white: Colors.white54, 
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
                           DateFormat('d', 'id_ID').format(date),
                           style: TextStyle(
-                            color: isSelected
-                                ? Colors.blue
-                                : (isToday ? Colors.white : Colors.black),
+                            color: Colors.black,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -99,9 +102,7 @@ class _HeaderDateTimelineState extends State<HeaderDateTimeline> {
                         Text(
                           DateFormat('MMMM', 'id_ID').format(date),
                           style: TextStyle(
-                            color: isSelected
-                                ? Colors.blue
-                                : (isToday ? Colors.white : Colors.black54),
+                            color: Colors.black26,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
