@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sekolah/schedul.dart';
 
-
 class ScheduleProvider with ChangeNotifier {
   final List<Schedule> _schedules = [];
-  DateTime _selectedDate = DateTime.now(); // Default to current date
+  DateTime _selectedDate = DateTime.now();
 
   List<Schedule> get schedules => _schedules;
-  DateTime get selectedDate => _selectedDate; // Getter for selectedDate
+  DateTime get selectedDate => _selectedDate;
 
   bool _isDayAlreadyScheduled(String day) {
     return _schedules.any((schedule) => schedule.day == day);

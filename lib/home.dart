@@ -152,7 +152,7 @@ class ScheduleScreen extends StatelessWidget {
                         width: 130,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.cyan),
+                            color: const Color.fromARGB(255, 149, 141, 65)),
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -203,7 +203,7 @@ class ScheduleScreen extends StatelessWidget {
       context: context,
       builder: (context) {
         return Dialog(
-          backgroundColor: Colors.cyan,
+          backgroundColor: Colors.white12,
           insetAnimationCurve: Curves.bounceIn,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16.0),
@@ -459,6 +459,7 @@ void _showEditDialog(BuildContext context, int index, Schedule schedule) {
     context: context,
     builder: (context) {
       return Dialog(
+        backgroundColor: Colors.white12,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0),
         ),
